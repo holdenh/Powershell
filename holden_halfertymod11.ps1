@@ -45,6 +45,7 @@ for ($i =0; $i -lt $song_one.Length; $i++ ) {
     }
     $new_song_one += $song_one[$i]
 }
+write-host "Song One `n"
 Write-Host $new_song_one
 #song two
 for ($i =0; $i -lt $song_two.Length; $i++ ) {
@@ -55,4 +56,27 @@ for ($i =0; $i -lt $song_two.Length; $i++ ) {
     }
     $new_song_two += $song_two[$i]
 }
+write-host "Song Two `n"
 Write-Host $new_song_two
+
+# loop the words to find words that are in both
+$matching = @()
+for ($i = 0; $i -lt $new_song_one.Length; $i++ ) {
+    for ($j = 0; $j -lt $new_song_two.Length; $j++) {
+        if ($new_song_two[$j] -eq " ") {
+            Write-Host "Space"
+        }
+        elseif ( $new_song_two[$j] -eq $new_song_one[$i]) {
+            if ($matching -NotContains $new_song_two[$j]) {
+                $matching += $new_song_two[$j]
+            }
+        }
+    }
+}
+#output similar
+write-host "These are the matching words:"
+for ($i = 0; $i -lt $new_song_one.Length; $i++ ) {
+    if ($matching[$i] -eq ' ') {
+        write-host $i
+    }
+}
