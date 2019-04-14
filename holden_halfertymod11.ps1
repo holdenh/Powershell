@@ -76,7 +76,5 @@ for ($i = 0; $i -lt $new_song_one.Length; $i++ ) {
 #output similar
 write-host "These are the matching words:"
 for ($i = 0; $i -lt $new_song_one.Length; $i++ ) {
-    if ($matching[$i] -eq ' ') {
-        write-host $i
-    }
+        write-host $matching[$i]
 }
