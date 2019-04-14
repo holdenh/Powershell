@@ -31,8 +31,28 @@ for ($i = 0; $i -lt $unsorted_lyrics.Length; $i+=2) {
     $song_one += $unsorted_lyrics[$i]
     $song_two += $unsorted_lyrics[$i+1]
 }
-write-host $song_one
-Write-Host
-write-host $song_two
 
 # songs have been split. Now handle formatting.
+# try to replace the | with a new line.
+$new_song_one = @()
+$new_song_two = @()
+#song one
+for ($i =0; $i -lt $song_one.Length; $i++ ) {
+    for ($j =0; $j -lt $song_one[$i].Length; $j++ ) {
+        if ($song_one[$i][$j] -eq "|") {
+            $song_one[$i] = $song_one[$i].replace("|","`n")
+        }
+    }
+    $new_song_one += $song_one[$i]
+}
+Write-Host $new_song_one
+#song two
+for ($i =0; $i -lt $song_two.Length; $i++ ) {
+    for ($j =0; $j -lt $song_two[$i].Length; $j++ ) {
+        if ($song_two[$i][$j] -eq "|") {
+            $song_two[$i] = $song_two[$i].replace("|","`n")
+        }
+    }
+    $new_song_two += $song_two[$i]
+}
+Write-Host $new_song_two
